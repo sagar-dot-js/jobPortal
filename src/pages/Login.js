@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useState } from "react";
+import { ReactSession } from "react-client-session";
 
 // useEffect(() => {}, []);
 
@@ -15,7 +16,12 @@ const Login = ({ setLoggedIn, loggedIn }) => {
   let UserLogin = () => {
     Axios.post(`${base}/api/v1/login`, userDetails).then((result) => {
       if (result?.data?.loginStatus) {
-        setLoggedIn({ ...loggedIn, loginStatus: true });
+        setLoggedIn({
+          ...loggedIn,
+          loginStatus: true,
+          UserData: result?.data?.loggedUser,
+        });
+        ReactSession.set("token", result.data.jwtToken);
       } else {
         console.log("False");
       }
