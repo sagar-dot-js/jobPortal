@@ -36,14 +36,11 @@ const App = () => {
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       var distance = radiusOfEarth * c;
       distance = parseFloat(distance).toFixed(2);
-      var distanceInMiles = 0.62137119 * distance;
-      distanceInMiles = parseFloat(distanceInMiles).toFixed(2);
+
       console.log(distance);
+      return distance;
     }
   }
-  calculateDistance();
-
-  console.log(currntLocation?.coords);
 
   // setInterval(getCurrntLocation, 5000);
 
@@ -60,6 +57,8 @@ const App = () => {
         longitude:{" "}
         {currntLocation ? currntLocation?.coords.longitude : "Loading"}{" "}
       </p>
+
+      <p>{calculateDistance()}</p>
     </div>
   );
 };
