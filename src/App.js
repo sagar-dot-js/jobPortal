@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 var geolocation = require("geolocation");
 
-setInterval(App, 1000);
 const App = () => {
   let [currntLocation, setCurrntLocation] = useState();
   let getCurrntLocation = () => {
@@ -42,9 +41,18 @@ const App = () => {
       return distance;
     }
   }
+  let refresshPage = () => {
+    window.location.reload(false);
+  };
+
+  let time = new Date(currntLocation?.timestamp);
+
+  console.log(time);
+  setInterval(refresshPage, 5000);
 
   useEffect(() => {
     getCurrntLocation();
+    console.log(currntLocation);
   }, []);
 
   return (
