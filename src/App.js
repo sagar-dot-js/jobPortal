@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 var geolocation = require("geolocation");
 
+setInterval(App, 1000);
 const App = () => {
   let [currntLocation, setCurrntLocation] = useState();
   let getCurrntLocation = () => {
@@ -42,14 +43,12 @@ const App = () => {
     }
   }
 
-  // setInterval(getCurrntLocation, 5000);
-
   useEffect(() => {
     getCurrntLocation();
   }, []);
 
   return (
-    <div>
+    <div className="text-2xl">
       <p>
         latitude: {currntLocation ? currntLocation?.coords.latitude : "Loading"}
       </p>
@@ -58,7 +57,7 @@ const App = () => {
         {currntLocation ? currntLocation?.coords.longitude : "Loading"}{" "}
       </p>
 
-      <p>{calculateDistance()}</p>
+      <p> Distence:{calculateDistance()}</p>
     </div>
   );
 };
